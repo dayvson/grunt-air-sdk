@@ -1,0 +1,45 @@
+{
+  "name": "grunt-air-sdk",
+  "description": "A grunt plugin to compile Adobe Flex, Adobe Air, Actionscript, MXML applications using the Adobe AIR_SDK and binaries available (mxmlc, compc, etc.)",
+  "version": "0.1.0",
+  "homepage": "https://github.com/dayvson/grunt-air-sdk",
+  "author": {
+    "name": "Maxwell Da Silva",
+    "email": "dayvson@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dayvson/grunt-air-sdk"
+  },
+  "bugs": {
+    "url": "https://github.com/dayvson/grunt-air-sdk/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/dayvson/grunt-air-sdk/blob/master/LICENSE-MIT"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.9.2",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-nodeunit": "^0.3.3",
+    "grunt": "~0.4.5"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "keywords": [
+    "gruntplugin"
+  ],
+  "dependencies": {
+    "air-sdk": "^16.0.0-272-9",
+    "shelljs": "^0.3.0"
+  }
+}
