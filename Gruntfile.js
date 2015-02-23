@@ -23,10 +23,10 @@ module.exports = function(grunt) {
       }
     },
 
-    // // Before generating any new files, remove any previously-created files.
-    // clean: {
-    //   tests: ['tmp']
-    // },
+    // Before generating any new files, remove any previously-created files.
+    clean: {
+      tests: ['tmp']
+    },
 
     // Configuration to be run (and then tested).
     air_sdk: {
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
           rawConfig: "+configname=air --optimize"
         },
         files: {
-          'test/expected/HelloWorldApp2.swf': 'test/fixtures/HelloWorldApp.as'
+          'tmp/HelloWorldApp.swf': 'test/fixtures/HelloWorldApp.as'
         }
       },
       hello_world_swc: {
@@ -45,15 +45,24 @@ module.exports = function(grunt) {
           rawConfig: "-static-link-runtime-shared-libraries=true -target-player=10.1 -source-path test/fixtures -include-classes com.dayvson.lib.Sample"
         },
         files: {
-          'test/expected/HelloWorldApp.swc': 'test/fixtures/HelloWorldApp.as'
+          'tmp/SampleLibrary.swc': 'test/fixtures/SampleLibrary.as'
+        }
+      },
+      VersionAppUsingExternalSWC: {
+        options: {
+          bin:"mxmlc",
+          rawConfig: "+configname=air -debug --optimize -static-link-runtime-shared-libraries=true -target-player=10.1 -library-path+=tmp/SampleLibrary.swc"
+        },
+        files: {
+          'tmp/VersionAppUsingExternalSWC.swf': 'test/fixtures/VersionAppUsingExternalSWC.as'
         }
       },
     },
 
-    // // Unit tests.
-    // nodeunit: {
-    //   tests: ['test/*_test.js']
-    // }
+    // Unit tests.
+    nodeunit: {
+      tests: ['test/*_test.js']
+    }
 
   });
 
@@ -67,8 +76,8 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  //grunt.registerTask('test', ['clean', 'air_sdk', 'nodeunit']);
-grunt.registerTask('test', ['air_sdk']);
+  grunt.registerTask('test', ['clean', 'air_sdk', 'nodeunit']);
+// grunt.registerTask('test', ['air_sdk']);
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
 
