@@ -25,13 +25,35 @@ In your project's Gruntfile, add a section named `air_sdk` to the data object pa
 ```js
 grunt.initConfig({
   air_sdk: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
+      hello_world: {
+        options: {
+          bin:"mxmlc",
+          rawConfig: "+configname=air --optimize"
+        },
+        files: {
+          'tmp/HelloWorldApp.swf': 'test/fixtures/HelloWorldApp.as'
+        }
+      },
+      hello_world_swc: {
+        options: {
+          bin:"compc",
+          rawConfig: "-static-link-runtime-shared-libraries=true -target-player=10.1 -source-path test/fixtures -include-classes com.dayvson.lib.Sample"
+        },
+        files: {
+          'tmp/SampleLibrary.swc': 'test/fixtures/SampleLibrary.as'
+        }
+      },
+      VersionAppUsingExternalSWC: {
+        options: {
+          bin:"mxmlc",
+          rawConfig: "+configname=air -debug --optimize -static-link-runtime-shared-libraries=true -target-player=10.1 -library-path+=tmp/SampleLibrary.swc"
+        },
+        files: {
+          'tmp/VersionAppUsingExternalSWC.swf': 'test/fixtures/VersionAppUsingExternalSWC.as'
+        }
+      },
+    }
+  }
 });
 ```
 
