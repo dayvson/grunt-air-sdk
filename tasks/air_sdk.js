@@ -39,9 +39,10 @@ module.exports = function(grunt) {
     }
     var executed = shell.exec(cmdLineOpts);
     if(executed.code === 0 ){
-      console.log("File successfully created!");
+      grunt.log.writeln("File successfully created!");
     }else{
-      console.log(executed.output);
+      grunt.log.error(executed.output);
+      grunt.fail.fatal("Error during compile");
     }
   });
 };
